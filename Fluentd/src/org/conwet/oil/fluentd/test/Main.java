@@ -1,4 +1,4 @@
-package Prueba;
+package org.conwet.oil.fluentd.test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,7 +66,7 @@ public class Main {
 	/* Main */
 
 	public static void main(String[] args) {
-		Ppal p = new Ppal();
+		Main p = new Main();
 		p.doApplicationLogic();
 		p.test1();
 		p.LOG.close();

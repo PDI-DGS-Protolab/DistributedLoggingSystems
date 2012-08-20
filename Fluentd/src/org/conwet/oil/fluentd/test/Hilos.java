@@ -1,4 +1,4 @@
-package Prueba;
+package org.conwet.oil.fluentd.test;
 
 import java.util.HashMap;
 import java.util.Map;
