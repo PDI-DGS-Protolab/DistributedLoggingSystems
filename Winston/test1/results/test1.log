@@ -1,0 +1,15 @@
+{"number":0.002216314198449254,"level":"warn","message":"Too low random number","timestamp":"2012-07-20T08:28:10.684Z"}
+{"number":0.6148114996030927,"level":"info","message":"Good random number!","timestamp":"2012-07-20T08:28:11.687Z"}
+{"number":0.3136438918299973,"level":"info","message":"Good random number!","timestamp":"2012-07-20T08:28:12.690Z"}
+{"number":0.5881038901861757,"level":"info","message":"Good random number!","timestamp":"2012-07-20T08:28:13.694Z"}
+{"number":0.040538602974265814,"level":"warn","message":"Too low random number","timestamp":"2012-07-20T08:28:14.698Z"}
+{"number":0.813949289964512,"level":"debug","message":"Too high randon number","timestamp":"2012-07-20T08:28:15.703Z"}
+{"number":0.35294048697687685,"level":"info","message":"Good random number!","timestamp":"2012-07-20T08:28:16.706Z"}
+{"number":0.9635626052040607,"level":"debug","message":"Too high randon number","timestamp":"2012-07-20T08:28:17.710Z"}
+{"number":0.9594088750891387,"level":"debug","message":"Too high randon number","timestamp":"2012-07-20T08:28:18.714Z"}
+{"number":0.35927084321156144,"level":"info","message":"Good random number!","timestamp":"2012-07-20T08:28:19.718Z"}
+{"number":0.6463257684372365,"level":"info","message":"Good random number!","timestamp":"2012-07-20T08:28:20.722Z"}
+{"number":0.1147872619330883,"level":"warn","message":"Too low random number","timestamp":"2012-07-20T08:28:21.726Z"}
+{"number":0.6567479155492038,"level":"info","message":"Good random number!","timestamp":"2012-07-20T08:28:22.730Z"}
+{"number":0.2500396042596549,"level":"info","message":"Good random number!","timestamp":"2012-07-20T08:28:23.737Z"}
+{"number":0.3225790346041322,"level":"info","message":"Good random number!","timestamp":"2012-07-20T08:28:24.746Z"}
