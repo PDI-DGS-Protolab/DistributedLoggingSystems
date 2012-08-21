@@ -34,7 +34,7 @@ To start using with Winston, you can use some of the following snippets:
   winston.add(winston.transports.File, { filename: 'somefile.log'  });
 
   winston.info('Hello again distributed logs');
-  winston.error('Ooops, this shouldn't be happening...');
+  winston.error('Ooops, this should not be happening...');
 
 
   /* This is a more complex but better way */
