@@ -8,8 +8,13 @@ Fluentd. The tests were developed in a local network but we tried to simulate
 a proper real environment sending and delivering a very high amount of
 data information.
 
-You need to use the file 'config/fluent.conf' and include it on your fluentd installation. The following lines compose an example of what we did:
 
+
+### How it works?
+
+First of all, you need to use the file 'config/fluent.conf' and include it on your fluentd installation. The following lines compose an example of what we did:
+
+``
 <match asd.*>
   type file
   path /home/johndoe/file.log
@@ -23,17 +28,11 @@ You need to use the file 'config/fluent.conf' and include it on your fluentd ins
   retry_limit 50
   flush_interval 10s
 </match>
+``
 
-We stored our logs in a local file called 'file.log' with its absolute path,
-and also we tried to forward every message to another host in our local
-network with some parameters such as de limit of retries or the flush
-interval. You may modify them if you want to. And you can play with the entire
-config file because it is plenty of comments and examples.
+We stored our logs in a local file called 'file.log' with its absolute path, and also we tried to forward every received message to another host in our local network with some parameters such as the retries limit or the flush interval. You may modify them if you want to. And you can play with the entire config file because it is plenty of comments and examples.
 
-
-### How it works?
-
-To create an instance of a Fluentd log is as simple as:
+After been setting up the system, it is time to code. To create an instance of a Fluentd log is as simple as:
 
 ```java
   private static FluentLogger LOG = FluentLogger.getLogger("app", "192.168.1.64", 24224);

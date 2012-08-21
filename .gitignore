@@ -1,4 +1,4 @@
-*.project
-*.class
+*/*.project
+*/*.class
 
-bin/
+*/bin/
