@@ -2,11 +2,15 @@ Fluentd
 ===========================
 
 
-## Description
-We implemented 3 different tests to check out the features provided by
-Fluentd. The tests were developed in a local network but we tried to simulate
-a proper real environment sending and delivering a very high amount of
-data information.
+### Description
+
+Fluentd is a distributed logging system written in Ruby which has the
+following interesting features:
+
+* Presents Java, Ruby, Python and PHP interfaces
+* Stream-oriented, fault-tolerance delivering system
+* Used with consoles, files, databases or data warehouse systems
+* Supports Hadoop integration
 
 
 
@@ -14,7 +18,6 @@ data information.
 
 First of all, you need to use the file 'config/fluent.conf' and include it on your fluentd installation. The following lines compose an example of what we did:
 
-``
 <match asd.*>
   type file
   path /home/johndoe/file.log
@@ -28,7 +31,6 @@ First of all, you need to use the file 'config/fluent.conf' and include it on yo
   retry_limit 50
   flush_interval 10s
 </match>
-``
 
 We stored our logs in a local file called 'file.log' with its absolute path, and also we tried to forward every received message to another host in our local network with some parameters such as the retries limit or the flush interval. You may modify them if you want to. And you can play with the entire config file because it is plenty of comments and examples.
 
@@ -59,14 +61,23 @@ messages:
 ```
 
 
-### Test 1
+
+### Testing Flume
+
+We implemented 3 different tests to check out the features provided by
+Fluentd. The tests were developed in a local network but we tried to simulate
+a proper real environment sending and delivering a very high amount of
+data information.
+
+
+#### Test 1
 The first test consisted on sending from 'Alice' to 'Bob' 1000 messages in a
 loop with different data (changing only the iteration number).
 
 The test was OK and we could see that logging messages with Fluentd is as simple as log4j
 
 
-### Test 2
+#### Test 2
 The second test was pretty similar but we tried to deliver a higher amount of
 data using 2 threads. Each of them logged 100 or 150 messages (depending on
 the Thread ID) to different machines connected in a distributed system.
@@ -75,7 +86,7 @@ The test was OK and Fluentd allows to implement correctly complex
 architectures of nodes
 
 
-### Test 3
+#### Test 3
 The last test was implemented to test the reliability of the tool several
 times. We used 1000 threads and each of them tried to log again 100 or 150 messages but this
 time we send data from 'Alice' to 'Bob', and 'Bob' sends every log received to 'Charles'.
@@ -92,7 +103,8 @@ our tests, so we still consider Fluentd an interesting technology which presents
 
 
 
-## Conclusions
+### Conclusions
+
 We think Fluentd is a great technology due to it offers a mix of power and
 simpleness.
 
@@ -105,5 +117,8 @@ powerful tool with an easy, fast configuration, Fluentd will fits quite well wit
 
 
 
-## About
-- Fluentd (Treasure Data) https://github.com/fluent/fluentd/
+### About
+
+- [Fluentd Repo in Github](https://github.com/fluent/fluentd/)
+- [Fluentd Official website](http://fluentd.org/)
+- [Treasure Data, the company behind Fluentd](http://www.treasure-data.com/)
