@@ -76,7 +76,7 @@ data information.
 The first test consisted on sending from 'Alice' to 'Bob' 1000 messages in a
 loop with different data (changing only the iteration number).
 
-The test was *OK* and we could see that logging messages with Fluentd is as simple as log4j
+The test was **OK** and we could see that logging messages with Fluentd is as simple as log4j
 
 
 ### Test 2 - Complex architecture with 'A', 'B' and 'C' and more traffic
@@ -84,7 +84,7 @@ The second test was pretty similar but we tried to deliver a higher amount of
 data using 2 threads. Each of them logged 100 or 150 messages (depending on
 the Thread ID) to different machines connected in a distributed system.
 
-The test was *OK* and Fluentd allows to implement correctly complex
+The test was **OK** and Fluentd allows to implement correctly complex
 architectures of nodes
 
 
@@ -97,7 +97,7 @@ Also, while the data were streamed, we tried to disconnect manually the network
 connection and see what happens with the information that could not get the
 destination, either if the destination were 'Bob' or 'Charles'.
 
-The test *PARTIALLY FAILED*. Fluentd supports a mechanism to store the logs
+The test **PARTIALLY FAILED**. Fluentd supports a mechanism to store the logs
 missed in a circular message queue of messages waiting to be delivered when it
 is possible. The problem is the mechanism is not reliable at 100% due to some
 of the messages were lost. However, we did not detect duplicate messages in
