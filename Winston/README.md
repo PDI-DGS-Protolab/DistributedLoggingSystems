@@ -108,15 +108,15 @@ the following situations:
 ### Test 1 - A logs messages to B with connection errors
 The first test consisted on sending a random number from 'Alice' to 'Bob' every second. Depending on the number value, the log would have a different category (info, warn, or debug). While the client keeps sending events, we disconnected manually the server and relaunched the instance to check out the behaviour and see if it supports automatic reconnection or if it is necessary to implement on the client-side a small fallback policy.
 
-The test was FAIL, so we needed to create another instance of the logger, assign the primary logger to the fallback one, and keep on using this one in the whole application. Even although the idea of using a fallback logger was right, we appreaciate some of the messages were lost during the switch.
+The test was FAILED, so we needed to create another instance of the logger, assign the primary logger to the fallback one, and keep on using this one in the whole application. Even although the idea of using a fallback logger was right, we appreaciate some of the messages were lost during the switch.
 
 
 ### Test 2 - Stress test with 4 clients simultaneously
 The second test was tried to test the performance of the server. We had 4
-machines in local network logging 20,000 messages per second (per machine too).
+machines in local network logging 20,000 messages per second, per machine.
 
 The test was PARTIALLY FAILED because the messages were sent correctly but
-Winston orders the logs by the timestamp of arrival (not the event timestamp on client-side, which should be more correct), and also it uses a kind of buffer. Therefore, the results obtained were lists of 10,000 messages from the same client. It works, but not on the way we expected.
+Winston orders the logs by the timestamp of arrival (not the event timestamp on client-side, which should be more correct), and also it uses a kind of buffer. Therefore, the results obtained were lists of 10,000 consecutive messages from the same client. It works, but not on the way we expected because we should have logs with interspersed messages.
 
 
 ### Test 3 - Forwarding messages in a complex architecture
