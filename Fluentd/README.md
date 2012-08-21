@@ -8,6 +8,56 @@ Fluentd. The tests were developed in a local network but we tried to simulate
 a proper real environment sending and delivering a very high amount of
 data information.
 
+You need to use the file 'config/fluent.conf' and include it on your fluentd installation. The following lines compose an example of what we did:
+
+<match asd.*>
+  type file
+  path /home/johndoe/file.log
+</match>
+
+<match app.prueba>
+  type forward
+  host 192.168.1.65
+  buffer_type file
+  buffer_path /var/log/fluent/myapp-forward
+  retry_limit 50
+  flush_interval 10s
+</match>
+
+We stored our logs in a local file called 'file.log' with its absolute path,
+and also we tried to forward every message to another host in our local
+network with some parameters such as de limit of retries or the flush
+interval. You may modify them if you want to. And you can play with the entire
+config file because it is plenty of comments and examples.
+
+
+### How it works?
+
+To create an instance of a Fluentd log is as simple as:
+
+```java
+  private static FluentLogger LOG = FluentLogger.getLogger("app", "192.168.1.64", 24224);
+```
+
+where:
+the first parameter, "app", is a tag
+the second parameter is the destination host
+the last one is the port number
+
+Once you have declare the log, you must use either methods to log
+messages:
+
+```java
+  /* 1st alternative: Declaring a key-value Map Object and logging the entire
+  structure */
+  Map<String, Object> data = new HashMap<String, Object>();
+  data.put("from", "Alice");
+  data.put("to", "Bob");
+  LOG.log("testing", data);
+
+  /* 2nd alternative: Just logging messages with unstructures key value */
+  LOG.log("testing", "from", "Alice");
+```
 
 
 ### Test 1
@@ -16,6 +66,7 @@ loop with different data (changing only the iteration number).
 
 The test was OK and we could see that logging messages with Fluentd is as simple as log4j
 
+
 ### Test 2
 The second test was pretty similar but we tried to deliver a higher amount of
 data using 2 threads. Each of them logged 100 or 150 messages (depending on
@@ -23,6 +74,7 @@ the Thread ID) to different machines connected in a distributed system.
 
 The test was OK and Fluentd allows to implement correctly complex
 architectures of nodes
+
 
 ### Test 3
 The last test was implemented to test the reliability of the tool several
