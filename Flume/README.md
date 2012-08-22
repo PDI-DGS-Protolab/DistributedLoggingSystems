@@ -15,8 +15,6 @@ Flume is a distributed logging system written in Java by Cloudera. It is hosted 
 
 Due to the high level of complexity reached by Flume, Cloudera thought a great refactoring was necessary and pertinent to make Flume easier to use and to integrate with other developmetns. The last version with the old philosophy was the version 0.9.4. After that point, Flume was renaming to Flume NG.
 
-Although Cloudera recommends to use Flume NG, it is important to notice that still is quite recent and presents some limitations in the API. Also, it lacks of enough documentation, which is plenty of sections described with the ter "TBD" *(To Be Determined)*. This is the cause to test both versions, the old and the one, and check out Flume as a whole technology with two faces. This let us analyze the progression and speed capacity in the development of Flume.
-
 ### Flume v0.9.3
 
 The approach followed in this old version consisted on the creation of a
@@ -27,7 +25,7 @@ master to coordinate the actions that a set of slaves must or could perform
 
 In contrast to the old version, you will never work again with masters and
 slaves. Instead, everything is an **agent**, an element which consists on:
-* A collection of *sources*,  entities that receive information)
+* A collection of *sources*,  entities that receive information
 * A collection of *sinks*, destinations that will send events to other sources
 * A collection of *channels*, queues which store events until a sink
   takes and delivers them to another agent
@@ -35,86 +33,37 @@ slaves. Instead, everything is an **agent**, an element which consists on:
 
 ## How it works?
 
+On one hand, it is important to notice that still is quite recent and presents some limitations in the API. Also, it lacks of enough documentation, which is plenty of sections described with the ter "TBD" *(To Be Determined)*.
+This is the cause to test both versions and see what were the changes carried out and what are the differences between both approaches.
+
+On the other hand, Cloudera recommends to use Flume NG and indeed, it is much easier to use. Flume 0.9.x will be deprecated soon, and although we tested the two releases, we are just going to explain the installation of Flume NG
+
+
 ### Installation
 
-It does not need any config file or setting up except from being installed in your Node instance. For doing that, just type this command in your terminal:
+These are the steps that you must follow to get Flume installed on your computer. 
+Open your terminal and type these commands:
 
 ```bash
-  sudo npm install winston winstond
+  # Download it from the Git repository 
+  # Also, you can use this link: http://www.apache.org/dyn/closer.cgi/flume/1.2.0/apache-flume-1.2.0.tar.gz
+  git clone git://git.apache.org/flume.git
+  cd flume
+  
+  # You must setup the configuration file using the template already written
+  cp conf/flume-conf.properties.template conf/flume-conf
+  
+  # If not set, export the JAVA_HOME environment variable
+  export JAVA_HOME=/usr
+  
+  # Launch an instance of an agent
+  bin/flume-ng agent -n agent -c conf/ -f conf/flume.conf
 ```
 
-At this moment, you will have Winston and a sort of set of extending features called Winstond to make more powerful your logger.
+If you came up to this point, now you can start to use Flume!
 
 
-### Client-side code
-
-To start using with Winston, you can use some of the following snippets:
-
-```java
-  /* Importing Winston library */
-  var winston = require('winston');
-
-
-  /* This is the most basic way */
-  winston.add(winston.transports.File, { filename: 'somefile.log' });
-
-  winston.info('Hello again distributed logs');
-  winston.warn('Warning: running out of memory...');
-  winston.error('Ooops, this should not be happening...');
-  winston.debug('DEBUG: the value of the variable is: ' + myVar);
-
-
-  /* This is a more complex but much better way */
-  var logger = new winston.Logger({
-      exitOnError: function() {
-          // Callback in case of an error
-      },
-
-      transports: [   // The elements which will receive our logs
-          new winston.transports.Console(),
-          new winston.transports.File({ filename : 'file-json.log' })
-          new winston.transports.File({ filename : 'file-plain.log', json : false })
-          new winston.transports.Couchdb({ host : 'localhost', db : 'logs' })
-          new winston.transports.Riak({ bucket : 'logs' })
-          new winston.transports.MongoDB({ db : 'db', level : 'info' })
-      ],
-
-      exceptionHandlers: [   // The elements that will store uncaught exceptions
-          new winston.transports.File({ filename : 'file-exceptions.log' })
-      ]
-  });
-
-  logger.info('Winston is amazing!');
-  // Also with 'warn', 'error' and 'debug' methods
-```
-
-### Server-side code
-
-You just need to create a server with the port number you want to listen to
-and the transports.
-
-```javascript
-
-  /* Importing Winstond library and creating a NSSocket */
-  var winstond = require('winstond'),
-      nssocket = winstond.nssocket;
-
-  /* Creating the server */
-  var server = nssocket.createServer({
-         services : ['collect', 'query', 'stream'],
-         port : 9000
-      });
-
-  /* Adding a transport to display received logs */
-  server.add(winstond.transports.Console);
-
-  /* Listening to client messages */
-  server.listen();
-```
-
-
-
-## Testing Winston
+## Testing Flume
 
 We implemented 4 tests trying to discover the real behaviour of the tool in
 the following situations:
@@ -177,7 +126,8 @@ enterprise or major community developments.
 
 ### About
 
-- [Winston](https://github.com/flatiron/winston/) repo in GitHub
-- [Winstond](https://github.com/flatiron/winstond/) repo in GitHub
-- [Nodejitsu official website](http://nodejitsu.com/), the authors of Winston
+- [Flume Project](http://flume.apache.org/) in Apache Software Foundation
+- [Flume NG](https://github.com/cloudera/flume-ng) repo in GitHub
+- [Flume](https://github.com/cloudera/flume) old repo in GitHub
+- [Flume Documentation](http://flume.apache.org/documentation.html)
 
