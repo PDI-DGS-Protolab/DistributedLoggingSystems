@@ -41,21 +41,21 @@ On the other hand, Cloudera recommends to use Flume NG and indeed, it is much ea
 
 ### Installation
 
-These are the steps that you must follow to get Flume installed on your computer. 
+These are the steps that you must follow to get Flume installed on your computer.
 Open your terminal and type these commands:
 
 ```bash
-  # Download it from the Git repository 
+  # Download it from the Git repository
   # Also, you can use this link: http://www.apache.org/dyn/closer.cgi/flume/1.2.0/apache-flume-1.2.0.tar.gz
   git clone git://git.apache.org/flume.git
   cd flume
-  
+
   # You must setup the configuration file using the template already written
   cp conf/flume-conf.properties.template conf/flume-conf
-  
+
   # If not set, export the JAVA_HOME environment variable
   export JAVA_HOME=/usr
-  
+
   # Launch an instance of an agent
   bin/flume-ng agent -n agent -c conf/ -f conf/flume.conf
 ```
@@ -68,13 +68,17 @@ If you came up to this point, now you can start to use Flume!
 We implemented 4 tests trying to discover the real behaviour of the tool in
 the following situations:
 
-* 'A' logs messages to 'B' with connection errors
-* 4 instances of 'A' logs messages to 'B' at the same time
-* Complex architecture where 'A' logs to 'B' and it forwards messages to 'C'
-* Querying log files
+
+### Test 1 - [Web] 'A' logs messages to 'B'
+
+### Test 2 - [Web] Complex architecture and different levels of reliability
+
+### Test 3 - [Code] 'A' logs messages to 'B'
+
+### Test 4 - [Code] Complex architecture
 
 
-### Test 1 - 'A' logs messages to 'B' with connection errors
+
 The first test consisted on sending a random number from 'Alice' to 'Bob' every second. Depending on the number value, the log would have a different category (info, warn, or debug). While the client keeps sending events, we disconnected manually the server and relaunched the instance to check out the behaviour and see if it supports automatic reconnection or if it is necessary to implement on the client-side a small fallback policy.
 
 The test **FAILED**, so we needed to create another instance of the logger, assign the primary logger to the fallback one, and keep on using this one in the whole application. Even although the idea of using a fallback logger was right, we appreaciate some of the messages were lost during the switch.
@@ -127,7 +131,8 @@ enterprise or major community developments.
 ### About
 
 - [Flume Project](http://flume.apache.org/) in Apache Software Foundation
-- [Flume NG](https://github.com/cloudera/flume-ng) repo in GitHub
-- [Flume](https://github.com/cloudera/flume) old repo in GitHub
+- [Flume NG v1.2](https://github.com/cloudera/flume-ng) repo in GitHub
+- [Flume v0.9.3](https://github.com/cloudera/flume) repo in GitHub
 - [Flume Documentation](http://flume.apache.org/documentation.html)
+- [Flume NG Architecture](http://www.cloudera.com/blog/2011/12/apache-flume-architecture-of-flume-ng-2/)
 
