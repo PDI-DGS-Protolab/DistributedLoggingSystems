@@ -48,8 +48,8 @@ These are the steps that you must follow to get Flume installed on your computer
 Open your terminal and type these commands:
 
 ```bash
-  # Download it from the Git repository
-  # Also, you can use this link: http://www.apache.org/dyn/closer.cgi/flume/1.2.0/apache-flume-1.2.0.tar.gz
+  # Download it from the Git repository. Alternatively, you can use the next link
+  # http://www.apache.org/dyn/closer.cgi/flume/1.2.0/apache-flume-1.2.0.tar.gz
   git clone git://git.apache.org/flume.git
   cd flume
 
@@ -99,40 +99,18 @@ The test was **PARTIALLY OK**. We saw that every message could get their destina
 
 ### Test 3 - [NG 1.2, Code] 'A' logs messages to 'B'
 
+This time, we wrote some little test using the new collection of methods and classes provided by Flume NG. 
+With the new changes, now it is by far easier than the old version, but still, we think a developer could have some pre-configurated destinations such as a console or a local file and a much easier façade for creating a RPC client sending data to a remote machine. We did it to facilitate rapid test or small developments.
+
+The test was **OK** as we expected.
 
 
 ### Test 4 - [NG 1.2, Code] Complex architecture
 
+Same code as the previous one, but with a different config file to perform forwardings.
 
-
-The first test consisted on sending a random number from 'Alice' to 'Bob' every second. Depending on the number value, the log would have a different category (info, warn, or debug). While the client keeps sending events, we disconnected manually the server and relaunched the instance to check out the behaviour and see if it supports automatic reconnection or if it is necessary to implement on the client-side a small fallback policy.
-
-The test **FAILED**, so we needed to create another instance of the logger, assign the primary logger to the fallback one, and keep on using this one in the whole application. Even although the idea of using a fallback logger was right, we appreaciate some of the messages were lost during the switch.
-
-
-### Test 2 - Stress test with 4 clients simultaneously
-The second test was tried to test the performance of the server. We had 4
-machines in local network logging 20,000 messages per second, per machine.
-
-The test **PARTIALLY FAILED** because the messages were sent correctly but
-Winston orders the logs by the timestamp of arrival (not the event timestamp on client-side, which should be more correct), and also it uses a kind of buffer. Therefore, the results obtained were lists of 10,000 consecutive messages from the same client. It works, but not on the way we expected because we should have logs with interspersed messages.
-
-
-### Test 3 - Forwarding messages in a complex architecture
-In the third test, we tried to create a more complex architecture, using 4
-clients which send events to 2 different, intermediate servers. Finally, these
-two had to forward everything to a final centralized server.
-
-The test **FAILED** because after been doing several tries, we saw that
-Winston does not support these kind of architectures, which nowadays limit the
-technology just to small projects and developments.
-
-
-### Test 4 - Querying logs
-The last test consisted on an easy script made to read the data information stored on a log file and filter by some field property.
-
-The test **FAILED** due to we used several queries in order to obtain different information but we just obtained the same results, which are the first 10 lines. This could be happening because of an undetected or not fixed bug. But the feature will be addressed, so we insist on the importance of having a logging system with which incorporates a native querying feature, which is not present in the rest of the other distributed logging tools.
-
+The test was **OK**. The problem we found with this test is that the messages received by the intermediate node were instantly forwared, so we were unable to do any kind of pre-process.
+Whether this feature could be performed or not, we hope the API will be improved to make it easier and get the data transparently, ready to be written in any custom sink or destination
 
 
 ## Conclusions
