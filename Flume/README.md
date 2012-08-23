@@ -115,21 +115,21 @@ Whether this feature could be performed or not, we hope the API will be improved
 
 ## Conclusions
 
-After doing the test described below, we think of Winston will probably be a great and succesful technology in the future.
+Tras haber analizado los casos expuestos anteriormente con ambas versiones, hemos sacado la siguiente lista de conclusiones, tanto favorables como negativas:
 
-We love the simpleness and flexibility provided by the tool due to the API
-design. However, Winston nowadays lacks of a proper, reliable and powerful system to
-transmit information with security.
+Advantages
+- Equilibrio entre potencia y rendimiento, permitiendo crear sistemas de gran envergadura y complejos
+- Gran tolerancia a errores y fiabilidad
+- Configuración remota
+- Muy completo, con muchisimos plugins, mecanismos de recepción y envío de logs
 
-* We have detected logs with duplicates
-* We could not reconnect automatically after a network failure, so we had to
-  used a fallback logger with the same setup but different port number
-* Some messages were lost when the network failed during the interval switching to the fallback
-* Also, we have detected bugs when querying log files, which is a quite
-  interesting feature but seems to be untested, or at least, unfinished
+Disadvantages
+- Complicado de usar a diferencia de las demás herramientas
+- API poco flexible, con multitud de clases y sin documentación
+- Documentación pobre a nivel general de la herramienta o de los ficheros de configuración
+- Elementos sin implementar (configuración remota de momento sin implementar)
 
-We are sure that Winston will be great, but it is not ready to be used in
-enterprise or major community developments.
+Esperamos que Flume implemente todo lo que le queda pronto, porque de ser así, sería la herramienta ideal para usar en cualquier desarrollo complejo
 
 
 ### About
