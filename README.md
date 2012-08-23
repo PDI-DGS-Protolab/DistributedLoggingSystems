@@ -1,12 +1,11 @@
 Distributed Logging Systems
 ===========================
 
-## Purpose
+### Purpose
 This repository contains a set of test used to check out the features and advantages provided by some of the technologies studied at the laboratory, regarding loggers which let you know the state of a whole distributed system divided in several remote machines.
 
 
-
-## Technologies
+### Technologies
 
 After been searching and analyzing a bunch of several technologies, we were able to find 8 great distributed logging tools.
 The next list contains the 3 tools that we considered the most interesting over the rest:
@@ -23,8 +22,7 @@ Also, here is a list with the rest of technologies that were studied but not inc
 * [Greg](https://github.com/jkff/greg)
 
 
-
-## Authors & Colaborators
+### Authors
 
 The members of the Open Innovation Lab. (*Technical University of Madrid*)
 
