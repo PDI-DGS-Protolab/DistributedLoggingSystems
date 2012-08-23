@@ -13,7 +13,13 @@ Flume is a distributed logging system written in Java by Cloudera. It is hosted 
 * Supports **Hadoop integration** and HDFS
 * Great collection of plugins to connect with databases (MySQL, MongoDB, HBase, Cassandra), data warehouse (Hive) or even Voldemort
 
-Due to the high level of complexity reached by Flume, Cloudera thought a great refactoring was necessary and pertinent to make Flume easier to use and to integrate with other developmetns. The last version with the old philosophy was the version 0.9.4. After that point, Flume was renaming to Flume NG.
+Due to the high level of complexity reached by Flume, Cloudera thought a great refactoring was necessary and pertinent to make Flume easier to use and to integrate with other developments. The last version with the old philosophy was the version 0.9.4. After that point, Flume was renaming to Flume NG.
+
+On one hand, it is important to notice that Flume NG is still quite recent and presents some limitations in the API. Also, it lacks of enough documentation, which is plenty of sections described with the ter "TBD" *(To Be Determined)*.
+This is the cause to test both versions and see what were the changes carried out and what are the differences between both approaches.
+
+On the other hand, Cloudera recommends to use Flume NG and indeed, it is much easier to use. Flume 0.9.x will be deprecated soon.
+
 
 ### Flume v0.9.3
 
@@ -33,10 +39,7 @@ slaves. Instead, everything is an **agent**, an element which consists on:
 
 ## How it works?
 
-On one hand, it is important to notice that still is quite recent and presents some limitations in the API. Also, it lacks of enough documentation, which is plenty of sections described with the ter "TBD" *(To Be Determined)*.
-This is the cause to test both versions and see what were the changes carried out and what are the differences between both approaches.
-
-On the other hand, Cloudera recommends to use Flume NG and indeed, it is much easier to use. Flume 0.9.x will be deprecated soon, and although we tested the two releases, we are just going to explain the installation of Flume NG
+As we said before, we are testing both versions, but we are just going to explain the instalation of Flume NG.
 
 
 ### Installation
@@ -65,17 +68,40 @@ If you came up to this point, now you can start to use Flume!
 
 ## Testing Flume
 
-We implemented 4 tests trying to discover the real behaviour of the tool in
-the following situations:
+We implemented 4 tests trying to discover the real behaviour of the tool.
+
+The first 2 tests were performed with the web interface provided by Flume v0.9.3
+The last 2 tests, with Java code using the new API provided by Flume NG v1.2
 
 
-### Test 1 - [Web] 'A' logs messages to 'B'
+### Test 1 - [0.9.3, Web] 'A' logs messages to 'B'
 
-### Test 2 - [Web] Complex architecture and different levels of reliability
+The first test consisted on configure a master node with 2 slaves called 'Alice' and 'Bob'. 
+'Alice' was supposed to log some random information, written manually in a console, which should be received by 'Bob' both in a console and a local file.
 
-### Test 3 - [Code] 'A' logs messages to 'B'
+The test was **OK** and we could see the great benefits shown by the Flume Web Interface, making quite easy to configure remote machines from the same master node.
 
-### Test 4 - [Code] Complex architecture
+
+### Test 2 - [0.9.3, Web] Complex architecture and different levels of reliability
+
+This second test was an evolution of the previous one, with the differences of creating several *slaves* sending and forwarding information.
+The system worked very well. But although it is not very complicated to configure the whole system when you are working with several nodes, Flume could have some sort of wizard to help developers with advanced issues.
+
+Also, we tried to introduce manually some connection errors shutting down the nodes in order to see what happens with the data that could have not reached the destination host and check out the reliability levels promised by Flume developers.
+It has, from less to more secure the following modes:
+
+* Best-effort. 'Alice' sends the message and does not care if it is delivered correctly or not
+* Store-on-failure. If the message does not reach the destiny, it is stored on a queue one time and will be 'fired' again.
+* End-to-end. Same as the previous one but 'Alice' keeps saving the message until it is finally delivered.
+
+The test was **PARTIALLY OK**. We saw that every message could get their destination with the End-to-end mode, but we detect several duplicates. Therefore, although you want to receive the whole data information, you will have to filter the replicated messages with a smart script not given by Flume
+
+
+### Test 3 - [NG 1.2, Code] 'A' logs messages to 'B'
+
+
+
+### Test 4 - [NG 1.2, Code] Complex architecture
 
 
 
