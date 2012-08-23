@@ -21,14 +21,21 @@ We want to have 2 agents for the test, 'Alice' and 'Bob'.
 Alice will send messages to 'Bob', which is on the IP 192.168.1.79 and port number 55555
 Bob will be listening to any message received by anyone and will output it on its console
 
-Other particular parameters are:
+To see the rest of the config file, please open [**conf/flume.conf**](https://github.com/oil-conwet/DistributedLoggingSystems/blob/master/Flume/test3-code/conf/flume.conf)
 
-* Channel by default
-* For the RPC mechanism, we will use Avro client
 
 ```plain
+  # Both sources are bounded to every request message
 
+  # Alice's sink is pointing to Bob
+  alice.sinks.snk1.channel = ch2
+  alice.sinks.snk1.type = avro
+  alice.sinks.snk1.hostname = 192.168.1.79
+  alice.sinks.snk1.port = 55555
 
+  # Bob's sink is a console
+  bob.sinks.log-sink1.channel = ch1
+  bob.sinks.log-sink1.type = logger
 ```
 
 
