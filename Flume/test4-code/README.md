@@ -20,7 +20,7 @@ If you open the config file, you would see that we only added these lines:
   alice.sinks.snk1.hostname = 192.168.1.79
   alice.sinks.snk1.port = 55555
 
-  # Alice has a failover sink (himself )in case of connection errors
+  # Alice has a failover sink (himself) in case of connection errors
   alice.sinks.snk2.channel = ch2
   alice.sinks.snk2.type = avro
   alice.sinks.snk2.hostname = 127.0.0.1
@@ -37,12 +37,13 @@ If you open the config file, you would see that we only added these lines:
   # (...)
 
   # Alice2 is declared with a sink with type 'logger'
+  # (...)
 ```
 
 Our idea is very simple:
 
-1. Alice log events and sends them to her first sink, Bob
-2. If not possible, Alice use the secondary sink, Alice2
+1. Alice logs events and sends them to her first sink, Bob
+2. If not possible, Alice uses the secondary sink, Alice2
 3. Alice2, launched on the same machine that Alice, receives data and displays
    every message on the console
 
