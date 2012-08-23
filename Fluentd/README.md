@@ -18,6 +18,7 @@ following interesting features:
 
 First of all, you need to use the file 'config/fluent.conf' and include it on your fluentd installation. The following lines compose an example of what we did:
 
+```plain
 <match asd.*>
   type file
   path /home/johndoe/file.log
@@ -31,6 +32,7 @@ First of all, you need to use the file 'config/fluent.conf' and include it on yo
   retry_limit 50
   flush_interval 10s
 </match>
+```
 
 We stored our logs in a local file called 'file.log' with its absolute path, and also we tried to forward every received message to another host in our local network with some parameters such as the retries limit or the flush interval. You may modify them if you want to. And you can play with the entire config file because it is plenty of comments and examples.
 
