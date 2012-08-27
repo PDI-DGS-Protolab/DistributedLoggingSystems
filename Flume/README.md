@@ -23,14 +23,13 @@ On the other hand, Cloudera recommends to use Flume NG and indeed, it is much ea
 
 ### Flume v0.9.3
 
-The approach followed in this old version consisted on the creation of a
-master to coordinate the actions that a set of slaves must or could perform
+The approach followed in this old version consisted on the creation of a master to coordinate the actions that a slave may or may not perform
 
 
 ### Flume NG v1.2
 
 In contrast to the old version, you will never work again with masters and
-slaves. Instead, everything is an **agent**, an element which consists on:
+slaves. Instead, everything is an **agent**, an element which just consists on:
 * A collection of *sources*,  entities that receive information
 * A collection of *sinks*, destinations that will send events to other sources
 * A collection of *channels*, queues which store events until a sink
@@ -115,21 +114,21 @@ Whether this feature could be performed or not, we hope the API will be improved
 
 ## Conclusions
 
-Tras haber analizado los casos expuestos anteriormente con ambas versiones, hemos sacado la siguiente lista de conclusiones, tanto favorables como negativas:
+After being analyzing the use cases previously described with both versions, we have obtained the following list of conclusions:
 
 Advantages
-- Equilibrio entre potencia y rendimiento, permitiendo crear sistemas de gran envergadura y complejos
-- Gran tolerancia a errores y fiabilidad
-- Configuración remota
-- Muy completo, con muchisimos plugins, mecanismos de recepción y envío de logs
+- Correct balance between power and performance, leting you the creation of large, complex systems
+- Great reliability and fault-tolerance
+- Remote configuration
+- A complete tool with lots of plugins, reception mechanism and logs delivery
 
 Disadvantages
-- Complicado de usar a diferencia de las demás herramientas
-- API poco flexible, con multitud de clases y sin documentación
-- Documentación pobre a nivel general de la herramienta o de los ficheros de configuración
-- Elementos sin implementar (configuración remota de momento sin implementar)
+- Complicated to use compared to the rest of tools
+- Rigid, non-documented API with too much classes without a simple description
+- Poor documentation of the whole tool at general terms, even with advanced and useful configuration features
+- New version has some important elements unimplemented today (remote configuration exists only in the old version)
 
-Esperamos que Flume implemente todo lo que le queda pronto, porque de ser así, sería la herramienta ideal para usar en cualquier desarrollo complejo
+We hope that Flume authors could implement every remaining module to become the best tool in the market, being allowed in any type of development, whether simple or complex.
 
 
 ### About
