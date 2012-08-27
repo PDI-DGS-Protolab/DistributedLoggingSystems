@@ -116,13 +116,13 @@ Whether this feature could be performed or not, we hope the API will be improved
 
 After being analyzing the use cases previously described with both versions, we have obtained the following list of conclusions:
 
-Advantages
+** Advantages **
 - Correct balance between power and performance, leting you the creation of large, complex systems
 - Great reliability and fault-tolerance
 - Remote configuration
 - A complete tool with lots of plugins, reception mechanism and logs delivery
 
-Disadvantages
+** Disadvantages **
 - Complicated to use compared to the rest of tools
 - Rigid, non-documented API with too much classes without a simple description
 - Poor documentation of the whole tool at general terms, even with advanced and useful configuration features
