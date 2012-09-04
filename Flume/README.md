@@ -117,7 +117,7 @@ Whether this feature could be performed or not, we hope the API will be improved
 After being analyzing the use cases previously described with both versions, we have obtained the following list of conclusions:
 
 **Advantages**
-- Correct balance between power and performance, leting you the creation of large, complex systems
+- Correct balance between power and performance, letting you the creation of large, complex systems
 - Great reliability and fault-tolerance
 - Remote configuration
 - A complete tool with lots of plugins, reception mechanism and logs delivery
